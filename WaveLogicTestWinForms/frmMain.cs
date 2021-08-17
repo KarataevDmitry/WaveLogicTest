@@ -9,11 +9,11 @@ using WaveLogicTestWinForms.Services;
 
 namespace WaveLogicTestWinForms
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         YahooService service = new YahooService();
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
             cbxPeriod.DataSource = Enum.GetValues(typeof(Period));
@@ -23,12 +23,12 @@ namespace WaveLogicTestWinForms
         {
             if (string.IsNullOrEmpty(tbxStockName.Text))
             {
-                errorProvider1.SetError(tbxStockName, "You need input stock name");
+                frmMainErrorProvider.SetError(tbxStockName, "You need input stock name");
                 return;
             }
             else
             {
-                errorProvider1.SetError(tbxStockName, "");
+                frmMainErrorProvider.SetError(tbxStockName, "");
             }
            
             if (!string.IsNullOrEmpty(tbxDepth.Text))
@@ -56,19 +56,19 @@ namespace WaveLogicTestWinForms
             {
                 tbxDepth.BackColor = Color.Green;
                 dtpEndDate.Enabled = false;
-                errorProvider1.SetError(tbxDepth, "");
+                frmMainErrorProvider.SetError(tbxDepth, "");
             }
             else if (string.IsNullOrEmpty(tbxDepth.Text))
             {
                 dtpEndDate.Enabled = true;
-                errorProvider1.SetError(tbxDepth, "");
+                frmMainErrorProvider.SetError(tbxDepth, "");
                 tbxDepth.BackColor = SystemColors.Window;
             }
             else
             {
 
                 dtpEndDate.Enabled = false;
-                errorProvider1.SetError(tbxDepth, "Value should be a kind of \"DdMmYy\", where D is count of days backward from StartDate, M - count of months, etc.");
+                frmMainErrorProvider.SetError(tbxDepth, "Value should be a kind of \"DdMmYy\", where D is count of days backward from StartDate, M - count of months, etc.");
             }
         }
 

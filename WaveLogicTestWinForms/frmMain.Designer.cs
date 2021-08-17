@@ -1,7 +1,7 @@
 ﻿
 namespace WaveLogicTestWinForms
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -41,12 +41,12 @@ namespace WaveLogicTestWinForms
             this.lblPeriodStart = new System.Windows.Forms.Label();
             this.lblEndDate = new System.Windows.Forms.Label();
             this.btnTransformData = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.frmMainErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.cbxPeriod = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExportPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStockValues)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frmMainErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgStockValues
@@ -145,7 +145,7 @@ namespace WaveLogicTestWinForms
             // 
             // errorProvider1
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.frmMainErrorProvider.ContainerControl = this;
             // 
             // cbxPeriod
             // 
@@ -197,7 +197,7 @@ namespace WaveLogicTestWinForms
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dtgStockValues)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frmMainErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +216,7 @@ namespace WaveLogicTestWinForms
         private System.Windows.Forms.Label lblPeriodStart;
         private System.Windows.Forms.Label lblEndDate;
         private System.Windows.Forms.Button btnTransformData;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider frmMainErrorProvider;
         private System.Windows.Forms.ComboBox cbxPeriod;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnExportPDF;
