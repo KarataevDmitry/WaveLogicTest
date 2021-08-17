@@ -1,22 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CsvHelper;
-using Newtonsoft.Json.Linq;
 using WaveLogicTestWinForms.Extensions;
 using WaveLogicTestWinForms.Model;
-using WaveLogicTestWinForms.Model.JSON;
 using WaveLogicTestWinForms.Services;
 
 namespace WaveLogicTestWinForms
@@ -43,7 +31,6 @@ namespace WaveLogicTestWinForms
                 errorProvider1.SetError(tbxStockName, "");
             }
            
-            IEnumerable<StockData> dt;
             if (!string.IsNullOrEmpty(tbxDepth.Text))
             {
                dtgStockValues.DataSource = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, tbxDepth.Text, tbxStockName.Text)).ToDataTable();
@@ -88,6 +75,11 @@ namespace WaveLogicTestWinForms
         private void btnTransformData_Click(object sender, EventArgs e)
         {
            dtgStockValues.DataSource =  service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ToDataTable();
+        }
+
+        private void btnExportPDF_Click(object sender, EventArgs e)
+        {
+            service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ExportToPDF("pdf_example.pdf");
         }
     }
 }

@@ -43,6 +43,8 @@ namespace WaveLogicTestWinForms
             this.btnTransformData = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.cbxPeriod = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnExportPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStockValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -145,23 +147,45 @@ namespace WaveLogicTestWinForms
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // comboBox1
+            // cbxPeriod
             // 
             this.cbxPeriod.FormattingEnabled = true;
             this.cbxPeriod.Location = new System.Drawing.Point(588, 79);
-            this.cbxPeriod.Name = "comboBox1";
+            this.cbxPeriod.Name = "cbxPeriod";
             this.cbxPeriod.Size = new System.Drawing.Size(121, 23);
             this.cbxPeriod.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.Location = new System.Drawing.Point(627, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Period";
+            // 
+            // btnExportPDF
+            // 
+            this.btnExportPDF.Location = new System.Drawing.Point(292, 415);
+            this.btnExportPDF.Name = "btnExportPDF";
+            this.btnExportPDF.Size = new System.Drawing.Size(93, 23);
+            this.btnExportPDF.TabIndex = 8;
+            this.btnExportPDF.Text = "ExportToPDF";
+            this.btnExportPDF.UseVisualStyleBackColor = true;
+            this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExportPDF);
             this.Controls.Add(this.cbxPeriod);
             this.Controls.Add(this.btnTransformData);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblEndDate);
             this.Controls.Add(this.lblPeriodStart);
             this.Controls.Add(this.lblDepth);
@@ -194,6 +218,8 @@ namespace WaveLogicTestWinForms
         private System.Windows.Forms.Button btnTransformData;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ComboBox cbxPeriod;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExportPDF;
     }
 }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iText.Layout;
+using iText.Layout.Element;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -42,13 +44,13 @@ namespace WaveLogicTestWinForms.Extensions
                     g.First().Open,
                     g.Last().Close,
                     g.Last().Adjclose,
-                    g.Last().Volume 
+                    g.Sum(x => x.Volume)
                     );
                 ds.Add(sd);
             }
             return ds;
         }
-        public static DataTable ToDataTable (this StockDataStore ds)
+        public static DataTable ToDataTable(this StockDataStore ds)
         {
             var dt = new DataTable();
             dt.Columns.Add(new DataColumn("date", typeof(DateTime)));
@@ -58,12 +60,47 @@ namespace WaveLogicTestWinForms.Extensions
             dt.Columns.Add(new DataColumn(nameof(StockData.Close), typeof(float)));
             dt.Columns.Add(new DataColumn(nameof(StockData.Adjclose), typeof(float)));
             dt.Columns.Add(new DataColumn(nameof(StockData.Volume), typeof(float)));
-            
+
             foreach (var data in ds)
             {
                 dt.Rows.Add(data.Date, data.Open, data.High, data.Low, data.Close, data.Adjclose, data.Volume);
             }
             return dt;
         }
+        public static void ExportToPDF(this StockDataStore dt, string fileName)
+        {
+            void WriteListToPdf(Document doc)
+            {
+                Table table = new Table(8);
+                table.AddHeaderCell("Date");
+                table.AddHeaderCell(nameof(StockData.Open));
+                table.AddHeaderCell(nameof(StockData.High));
+                table.AddHeaderCell(nameof(StockData.Low));
+                table.AddHeaderCell(nameof(StockData.Close));
+                table.AddHeaderCell(nameof(StockData.Adjclose));
+                table.AddHeaderCell(nameof(StockData.Volume));
+                table.StartNewRow();
+                foreach (var item in dt)
+                {
+                    table.AddCell(item.Date.ToString("dd.MM.yyyy HH:mm:ss"));
+                    table.AddCell(item.Open.ToString());
+                    table.AddCell(item.High.ToString());
+                    table.AddCell(item.Low.ToString());
+                    table.AddCell(item.Close.ToString());
+                    table.AddCell(item.Adjclose.ToString());
+                    table.AddCell(item.Volume.ToString());
+                    table.StartNewRow();
+                }
+
+
+
+                doc.Add(table);
+                doc.Close();
+
+            }
+            var doc = new Document(new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfWriter(fileName)));
+            WriteListToPdf(doc);
+        }
     }
+  
 }
