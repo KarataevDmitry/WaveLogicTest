@@ -23,10 +23,12 @@ namespace WaveLogicTestWinForms
 {
     public partial class Form1 : Form
     {
-        
+        YahooService service = new YahooService();
+
         public Form1()
         {
             InitializeComponent();
+            cbxPeriod.DataSource = Enum.GetValues(typeof(Period));
         }
 
         private void btnDownloadFromYahoo_Click(object sender, EventArgs e)
@@ -40,16 +42,17 @@ namespace WaveLogicTestWinForms
             {
                 errorProvider1.SetError(tbxStockName, "");
             }
-            YahooService service = new YahooService();
+           
             IEnumerable<StockData> dt;
             if (!string.IsNullOrEmpty(tbxDepth.Text))
             {
-               dt = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, tbxDepth.Text, tbxStockName.Text));
+               dtgStockValues.DataSource = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, tbxDepth.Text, tbxStockName.Text)).ToDataTable();
+
             }
             else
             {
                 var days_diff = (dtpEndDate.Value - dtpStartDate.Value).ToDepthValueInDays();
-                 dt = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, days_diff, tbxStockName.Text));
+                dtgStockValues.DataSource = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, days_diff, tbxStockName.Text)).ToDataTable();
             }
 
             //dtgStockValues.DataSource = dt;
@@ -80,6 +83,11 @@ namespace WaveLogicTestWinForms
                 dtpEndDate.Enabled = false;
                 errorProvider1.SetError(tbxDepth, "Value should be a kind of \"DdMmYy\", where D is count of days backward from StartDate, M - count of months, etc.");
             }
+        }
+
+        private void btnTransformData_Click(object sender, EventArgs e)
+        {
+           dtgStockValues.DataSource =  service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ToDataTable();
         }
     }
 }

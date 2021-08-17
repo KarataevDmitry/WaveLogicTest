@@ -21,7 +21,8 @@ namespace WaveLogicTestWinForms.Services
     public class YahooService
     {
         private WebClient wc = new WebClient();
-        
+        private StockDataStore ds = new StockDataStore();
+        public StockDataStore Store { get => ds; }
         public YahooService()
         {
 
@@ -39,14 +40,7 @@ namespace WaveLogicTestWinForms.Services
             var qRes = wc.DownloadString(jsonQuerry);
             var queryResult = JObject.Parse(qRes);
             Rootobject rootobject = queryResult.ToObject<Rootobject>();
-            var dt = new DataTable();
-            dt.Columns.Add(new DataColumn("date", typeof(DateTime)));
-            dt.Columns.Add(new DataColumn(nameof(Quote.open),        typeof(float)));
-            dt.Columns.Add(new DataColumn(nameof(Quote.high),        typeof(float)));
-            dt.Columns.Add(new DataColumn(nameof(Quote.low),         typeof(float)));
-            dt.Columns.Add(new DataColumn(nameof(Quote.close),       typeof(float)));
-            dt.Columns.Add(new DataColumn(nameof(Adjclose.adjclose), typeof(float)));
-            dt.Columns.Add(new DataColumn(nameof(Quote.volume),      typeof(float)));
+           
             Quote[] quotes = rootobject.chart.result[0].indicators.quote;
             Adjclose[] adjclose = rootobject.chart.result[0].indicators.adjclose;
             int[] unixtimes = rootobject.chart.result[0].timestamp;
@@ -62,19 +56,15 @@ namespace WaveLogicTestWinForms.Services
                     var close_i = quotes[i].close[j];
                     var adjClose_i = adjclose[i].adjclose[j];
                     var volume_i = quotes[i].volume[j];
-                    stockValues.Add(new StockData(date, open_i, high_i, low_i, close_i, adjClose_i, volume_i));
+                    ds.Add(new StockData(date, open_i, high_i, low_i, close_i, adjClose_i, volume_i));
                 }
                 
                
             }
-            return stockValues;
+            return Store;
         }
-        //public StockDataStore TransformToWeekly(StockDataStore original)
-        //{
-        //    original.GroupBy(i => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(
-        //        i.Date,
-        //        CalendarWeekRule.FirstDay, DayOfWeek.Monday));
-        //}
+       
+        }
         //public DataTable GetCSVData(StockInfo stockInfo)
         //{
         //    var unixStartDate = ((DateTimeOffset)stockInfo.StartDate).ToUnixTimeSeconds();
@@ -96,4 +86,4 @@ namespace WaveLogicTestWinForms.Services
         //    return dt;
         //}
     }
-}
+

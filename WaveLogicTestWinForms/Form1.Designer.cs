@@ -42,16 +42,16 @@ namespace WaveLogicTestWinForms
             this.lblEndDate = new System.Windows.Forms.Label();
             this.btnTransformData = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxPeriod = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStockValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgStockValues
             // 
             this.dtgStockValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgStockValues.Location = new System.Drawing.Point(71, 108);
-            this.dtgStockValues.Name = "dataGridView1";
+            this.dtgStockValues.Name = "dtgStockValues";
             this.dtgStockValues.RowTemplate.Height = 25;
             this.dtgStockValues.Size = new System.Drawing.Size(663, 292);
             this.dtgStockValues.TabIndex = 0;
@@ -139,6 +139,7 @@ namespace WaveLogicTestWinForms
             this.btnTransformData.TabIndex = 6;
             this.btnTransformData.Text = "Transform";
             this.btnTransformData.UseVisualStyleBackColor = true;
+            this.btnTransformData.Click += new System.EventHandler(this.btnTransformData_Click);
             // 
             // errorProvider1
             // 
@@ -146,22 +147,18 @@ namespace WaveLogicTestWinForms
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Daily",
-            "Weekly",
-            "Monthly"});
-            this.comboBox1.Location = new System.Drawing.Point(588, 79);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 7;
+            this.cbxPeriod.FormattingEnabled = true;
+            this.cbxPeriod.Location = new System.Drawing.Point(588, 79);
+            this.cbxPeriod.Name = "comboBox1";
+            this.cbxPeriod.Size = new System.Drawing.Size(121, 23);
+            this.cbxPeriod.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbxPeriod);
             this.Controls.Add(this.btnTransformData);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
@@ -196,7 +193,7 @@ namespace WaveLogicTestWinForms
         private System.Windows.Forms.Label lblEndDate;
         private System.Windows.Forms.Button btnTransformData;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxPeriod;
     }
 }
 
