@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using WaveLogicTestWinForms.Extensions;
@@ -33,17 +34,20 @@ namespace WaveLogicTestWinForms
            
             if (!string.IsNullOrEmpty(tbxDepth.Text))
             {
-               dtgStockValues.DataSource = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, tbxDepth.Text, tbxStockName.Text)).ToDataTable();
+                
+                dtgStockValues.DataSource = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, tbxDepth.Text, tbxStockName.Text)).ToDataTable();
 
             }
             else
             {
+               
                 var days_diff = (dtpEndDate.Value - dtpStartDate.Value).ToDepthValueInDays();
                 dtgStockValues.DataSource = service.GetJSONData(new Model.StockInfo(dtpStartDate.Value, dtpEndDate.Value, days_diff, tbxStockName.Text)).ToDataTable();
             }
-
+            
             //dtgStockValues.DataSource = dt;
             dtgStockValues.Refresh();
+            tsAppStatus.Text = "Data recieved succesfully";
 
             }
 
@@ -74,12 +78,30 @@ namespace WaveLogicTestWinForms
 
         private void btnTransformData_Click(object sender, EventArgs e)
         {
-           dtgStockValues.DataSource =  service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ToDataTable();
+           
+            dtgStockValues.DataSource =  service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ToDataTable();
+            tsAppStatus.Text = "Transformation completed";
         }
 
         private void btnExportPDF_Click(object sender, EventArgs e)
         {
-            service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ExportToPDF("pdf_example.pdf");
+            var dr = saveExportResult.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ExportToPDF(saveExportResult.FileName);
+                tsAppStatus.Text = "Saving completed";
+                
+            }
+            else
+            {
+                tsAppStatus.Text = "Saving canceled";
+            }
+           
         }
+
+
+
+
     }
 }

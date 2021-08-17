@@ -53,7 +53,7 @@ namespace WaveLogicTestWinForms.Extensions
         public static DataTable ToDataTable(this StockDataStore ds)
         {
             var dt = new DataTable();
-            dt.Columns.Add(new DataColumn("date", typeof(DateTime)));
+            dt.Columns.Add(new DataColumn("date", typeof(string)));
             dt.Columns.Add(new DataColumn(nameof(StockData.Open), typeof(float)));
             dt.Columns.Add(new DataColumn(nameof(StockData.High), typeof(float)));
             dt.Columns.Add(new DataColumn(nameof(StockData.Low), typeof(float)));
@@ -63,7 +63,7 @@ namespace WaveLogicTestWinForms.Extensions
 
             foreach (var data in ds)
             {
-                dt.Rows.Add(data.Date, data.Open, data.High, data.Low, data.Close, data.Adjclose, data.Volume);
+                dt.Rows.Add(data.Date.ToString("dd.MM.yyyy"), data.Open, data.High, data.Low, data.Close, data.Adjclose, data.Volume);
             }
             return dt;
         }
@@ -82,7 +82,7 @@ namespace WaveLogicTestWinForms.Extensions
                 table.StartNewRow();
                 foreach (var item in dt)
                 {
-                    table.AddCell(item.Date.ToString("dd.MM.yyyy HH:mm:ss"));
+                    table.AddCell(item.Date.ToString("dd.MM.yyyy"));
                     table.AddCell(item.Open.ToString());
                     table.AddCell(item.High.ToString());
                     table.AddCell(item.Low.ToString());

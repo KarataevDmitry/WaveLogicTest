@@ -45,14 +45,19 @@ namespace WaveLogicTestWinForms
             this.cbxPeriod = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExportPDF = new System.Windows.Forms.Button();
+            this.saveExportResult = new System.Windows.Forms.SaveFileDialog();
+            this.stAppStatus = new System.Windows.Forms.StatusStrip();
+            this.tsStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsAppStatus = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStockValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmMainErrorProvider)).BeginInit();
+            this.stAppStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtgStockValues
             // 
             this.dtgStockValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgStockValues.Location = new System.Drawing.Point(71, 108);
+            this.dtgStockValues.Location = new System.Drawing.Point(77, 84);
             this.dtgStockValues.Name = "dtgStockValues";
             this.dtgStockValues.RowTemplate.Height = 25;
             this.dtgStockValues.Size = new System.Drawing.Size(663, 292);
@@ -60,7 +65,7 @@ namespace WaveLogicTestWinForms
             // 
             // btnDownloadFromYahoo
             // 
-            this.btnDownloadFromYahoo.Location = new System.Drawing.Point(71, 415);
+            this.btnDownloadFromYahoo.Location = new System.Drawing.Point(77, 382);
             this.btnDownloadFromYahoo.Name = "btnDownloadFromYahoo";
             this.btnDownloadFromYahoo.Size = new System.Drawing.Size(75, 23);
             this.btnDownloadFromYahoo.TabIndex = 1;
@@ -70,14 +75,14 @@ namespace WaveLogicTestWinForms
             // 
             // tbxStockName
             // 
-            this.tbxStockName.Location = new System.Drawing.Point(71, 79);
+            this.tbxStockName.Location = new System.Drawing.Point(77, 55);
             this.tbxStockName.Name = "tbxStockName";
             this.tbxStockName.Size = new System.Drawing.Size(75, 23);
             this.tbxStockName.TabIndex = 2;
             // 
             // tbxDepth
             // 
-            this.tbxDepth.Location = new System.Drawing.Point(179, 79);
+            this.tbxDepth.Location = new System.Drawing.Point(185, 55);
             this.tbxDepth.Name = "tbxDepth";
             this.tbxDepth.Size = new System.Drawing.Size(60, 23);
             this.tbxDepth.TabIndex = 3;
@@ -86,7 +91,7 @@ namespace WaveLogicTestWinForms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 58);
+            this.label1.Location = new System.Drawing.Point(77, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 15);
             this.label1.TabIndex = 4;
@@ -95,7 +100,7 @@ namespace WaveLogicTestWinForms
             // lblDepth
             // 
             this.lblDepth.AutoSize = true;
-            this.lblDepth.Location = new System.Drawing.Point(164, 58);
+            this.lblDepth.Location = new System.Drawing.Point(170, 34);
             this.lblDepth.Name = "lblDepth";
             this.lblDepth.Size = new System.Drawing.Size(90, 15);
             this.lblDepth.TabIndex = 4;
@@ -103,14 +108,14 @@ namespace WaveLogicTestWinForms
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(270, 79);
+            this.dtpStartDate.Location = new System.Drawing.Point(276, 55);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(142, 23);
             this.dtpStartDate.TabIndex = 5;
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(429, 79);
+            this.dtpEndDate.Location = new System.Drawing.Point(435, 55);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(132, 23);
             this.dtpEndDate.TabIndex = 5;
@@ -118,7 +123,7 @@ namespace WaveLogicTestWinForms
             // lblPeriodStart
             // 
             this.lblPeriodStart.AutoSize = true;
-            this.lblPeriodStart.Location = new System.Drawing.Point(324, 58);
+            this.lblPeriodStart.Location = new System.Drawing.Point(330, 34);
             this.lblPeriodStart.Name = "lblPeriodStart";
             this.lblPeriodStart.Size = new System.Drawing.Size(31, 15);
             this.lblPeriodStart.TabIndex = 4;
@@ -127,7 +132,7 @@ namespace WaveLogicTestWinForms
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(480, 61);
+            this.lblEndDate.Location = new System.Drawing.Point(486, 37);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(27, 15);
             this.lblEndDate.TabIndex = 4;
@@ -135,7 +140,7 @@ namespace WaveLogicTestWinForms
             // 
             // btnTransformData
             // 
-            this.btnTransformData.Location = new System.Drawing.Point(179, 414);
+            this.btnTransformData.Location = new System.Drawing.Point(185, 382);
             this.btnTransformData.Name = "btnTransformData";
             this.btnTransformData.Size = new System.Drawing.Size(75, 23);
             this.btnTransformData.TabIndex = 6;
@@ -143,14 +148,14 @@ namespace WaveLogicTestWinForms
             this.btnTransformData.UseVisualStyleBackColor = true;
             this.btnTransformData.Click += new System.EventHandler(this.btnTransformData_Click);
             // 
-            // errorProvider1
+            // frmMainErrorProvider
             // 
             this.frmMainErrorProvider.ContainerControl = this;
             // 
             // cbxPeriod
             // 
             this.cbxPeriod.FormattingEnabled = true;
-            this.cbxPeriod.Location = new System.Drawing.Point(588, 79);
+            this.cbxPeriod.Location = new System.Drawing.Point(594, 55);
             this.cbxPeriod.Name = "cbxPeriod";
             this.cbxPeriod.Size = new System.Drawing.Size(121, 23);
             this.cbxPeriod.TabIndex = 7;
@@ -159,7 +164,7 @@ namespace WaveLogicTestWinForms
             // 
             this.label2.AutoSize = true;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label2.Location = new System.Drawing.Point(627, 61);
+            this.label2.Location = new System.Drawing.Point(633, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 4;
@@ -167,7 +172,7 @@ namespace WaveLogicTestWinForms
             // 
             // btnExportPDF
             // 
-            this.btnExportPDF.Location = new System.Drawing.Point(292, 415);
+            this.btnExportPDF.Location = new System.Drawing.Point(298, 382);
             this.btnExportPDF.Name = "btnExportPDF";
             this.btnExportPDF.Size = new System.Drawing.Size(93, 23);
             this.btnExportPDF.TabIndex = 8;
@@ -175,11 +180,37 @@ namespace WaveLogicTestWinForms
             this.btnExportPDF.UseVisualStyleBackColor = true;
             this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
             // 
-            // Form1
+            // saveExportResult
+            // 
+            this.saveExportResult.Filter = "PDF Fiels|*.pdf";
+            // 
+            // stAppStatus
+            // 
+            this.stAppStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsStatusLabel,
+            this.tsAppStatus});
+            this.stAppStatus.Location = new System.Drawing.Point(0, 428);
+            this.stAppStatus.Name = "stAppStatus";
+            this.stAppStatus.Size = new System.Drawing.Size(800, 22);
+            this.stAppStatus.TabIndex = 9;
+            this.stAppStatus.Text = "statusStrip1";
+            // 
+            // tsStatusLabel
+            // 
+            this.tsStatusLabel.Name = "tsStatusLabel";
+            this.tsStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tsAppStatus
+            // 
+            this.tsAppStatus.Name = "tsAppStatus";
+            this.tsAppStatus.Size = new System.Drawing.Size(0, 17);
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.stAppStatus);
             this.Controls.Add(this.btnExportPDF);
             this.Controls.Add(this.cbxPeriod);
             this.Controls.Add(this.btnTransformData);
@@ -194,10 +225,12 @@ namespace WaveLogicTestWinForms
             this.Controls.Add(this.tbxStockName);
             this.Controls.Add(this.btnDownloadFromYahoo);
             this.Controls.Add(this.dtgStockValues);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dtgStockValues)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmMainErrorProvider)).EndInit();
+            this.stAppStatus.ResumeLayout(false);
+            this.stAppStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +253,10 @@ namespace WaveLogicTestWinForms
         private System.Windows.Forms.ComboBox cbxPeriod;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnExportPDF;
+        private System.Windows.Forms.SaveFileDialog saveExportResult;
+        private System.Windows.Forms.StatusStrip stAppStatus;
+        private System.Windows.Forms.ToolStripStatusLabel tsStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel tsAppStatus;
     }
 }
 
