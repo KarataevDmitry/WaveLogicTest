@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using WaveLogicTestWinForms.Extensions;
 using WaveLogicTestWinForms.Model;
+using WaveLogicTestWinForms.Resources;
 using WaveLogicTestWinForms.Services;
 
 namespace WaveLogicTestWinForms
@@ -24,7 +25,7 @@ namespace WaveLogicTestWinForms
         {
             if (string.IsNullOrEmpty(tbxStockName.Text))
             {
-                frmMainErrorProvider.SetError(tbxStockName, "You need input stock name");
+                frmMainErrorProvider.SetError(tbxStockName, TextResources.NeedInputStockName);
                 return;
             }
             else
@@ -47,7 +48,7 @@ namespace WaveLogicTestWinForms
             
             //dtgStockValues.DataSource = dt;
             dtgStockValues.Refresh();
-            tsAppStatus.Text = "Data recieved succesfully";
+            tsAppStatus.Text = TextResources.DataRecievedSuccessfuly;
 
             }
 
@@ -72,7 +73,7 @@ namespace WaveLogicTestWinForms
             {
 
                 dtpEndDate.Enabled = false;
-                frmMainErrorProvider.SetError(tbxDepth, "Value should be a kind of \"DdMmYy\", where D is count of days backward from StartDate, M - count of months, etc.");
+                frmMainErrorProvider.SetError(tbxDepth, TextResources.IncorrectDepthValue);
             }
         }
 
@@ -80,7 +81,7 @@ namespace WaveLogicTestWinForms
         {
            
             dtgStockValues.DataSource =  service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ToDataTable();
-            tsAppStatus.Text = "Transformation completed";
+            tsAppStatus.Text = TextResources.TransformationCompleted;
         }
 
         private void btnExportPDF_Click(object sender, EventArgs e)
@@ -90,12 +91,12 @@ namespace WaveLogicTestWinForms
             if (dr == DialogResult.OK)
             {
                 service.Store.TransformTo((Period)cbxPeriod.SelectedItem).ExportToPDF(saveExportResult.FileName);
-                tsAppStatus.Text = "Saving completed";
+                tsAppStatus.Text = TextResources.SavingCompleted;
                 
             }
             else
             {
-                tsAppStatus.Text = "Saving canceled";
+                tsAppStatus.Text = TextResources.SavingCanceled;
             }
            
         }
